@@ -90,3 +90,6 @@ body
 .point:hover .text{
     opacity: 1;
 }
+.point:hover{
+    z-index: 9;
+}

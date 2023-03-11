@@ -236,16 +236,22 @@ const tick = () =>
     
             const intersects = raycaster.intersectObjects( scene.children, true );
     
-            if(intersects.length === 0){
-                point.element.classList.add('visible');
+            const pointDistance = point.position.distanceTo( camera.position );
+
+            if(pointDistance > 15){
+                point.element.classList.remove('visible');
             }else{
-                const intersectionDistance = intersects[0].distance;
-                const pointDistance = point.position.distanceTo( camera.position );
-    
-                if( pointDistance > intersectionDistance ){
-                    point.element.classList.remove('visible');
-                }else{
+                if(intersects.length === 0){
                     point.element.classList.add('visible');
+                }else{
+                    const intersectionDistance = intersects[0].distance;
+                    
+        
+                    if( pointDistance > intersectionDistance ){
+                        point.element.classList.remove('visible');
+                    }else{
+                        point.element.classList.add('visible');
+                    }
                 }
             }
     
